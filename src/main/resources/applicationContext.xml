@@ -29,13 +29,15 @@
         <!--引入mybatis配置文件-->
         <property name="configLocation" value="classpath:mybatis-config"></property>
         <!--引入MyBatis映射文件-->
-        <property name="mapperLocations" value="classpath:com/zking/entity/*.xml"></property>
+        <property name="mapperLocations" value="classpath:com/zking/mapper/*.xml"></property>
     </bean>
 
+    <!--扫描mapper包并且自动创建成 MapperFactoryBean-->
     <bean id="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.zking.dao"></property>
+        <property name="basePackage" value="com.zking.mapper"></property>
     </bean>
 
+    <!--active-->
     <!--事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"></property>
@@ -59,4 +61,11 @@
     <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService"></bean>
     <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService"></bean>
 
+    <!-- 定义文件解释器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置默认编码 -->
+        <property name="defaultEncoding" value="utf-8"></property>
+        <!-- 上传图片最大大小5M-->
+        <property name="maxUploadSize" value="5242440"></property>
+    </bean>
 </beans>
