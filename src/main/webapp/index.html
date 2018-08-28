@@ -1,10 +1,498 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-   0k0k
-</body>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="plugs/bootstrap/css/bootstrap.css">
+    
+    
+  </head>
+  <body>
+  	<div id="allvue">
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" style="color: #FFFFFF;" href="#">水果熟了后台管理</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+      	<li style="margin-right: 1px;">
+      		<a href="#" class="dropdown-toggle" style="background-color:#4C514F;color: rgb(255, 255, 255);" class="btn btn-default" aria-label="Left Align">
+  					<span style="width: 20px;" class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+  					<span class="badge">5</span>
+					</a>
+      	</li>
+				<li style="margin-right: 1px;">
+					<a href="#" class="dropdown-toggle" style="background-color:#89357c;color: rgb(255, 255, 255);" class="btn btn-default" aria-label="Left Align">
+  					<span style="width: 30px;" class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+					</a>
+				</li>
+				<li style="margin-right: 1px;">
+					<a href="#" class="dropdown-toggle" style="background-color:#1EAA5F;color: rgb(255, 255, 255);" class="btn btn-default" aria-label="Left Align">
+  					<span style="width: 30px;" class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+					</a>
+				</li>
+        <li class="dropdown">
+          <a href="#" style="background-color: #0BABFB;color: #FFFFFF;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">水果熟了 <span class="caret"></span></a>
+          
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	<div style="margin-top:-20px;border:1px solid #E7DEDE ;line-height: 40px; height: 40px; background-color: #F5F0F0;width:15%;float: left;">
+		<button style="margin-bottom: 5px;margin-left: 7px;background-color:#65C372;color: rgb(255, 255, 255);" type="button" class="btn btn-default" aria-label="Left Align">
+  		<span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+		</button>
+		<button style="margin-bottom: 5px;margin-left: 5px;background-color:#0BABFB;color: rgb(255, 255, 255);" type="button" class="btn btn-default" aria-label="Left Align">
+  		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+		</button>
+		<button style="margin-bottom: 5px;margin-left: 5px;background-color:#F0AD4E;color: rgb(255, 255, 255);" type="button" class="btn btn-default" aria-label="Left Align">
+  		<span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+		</button>
+		<button style="margin-bottom: 5px;margin-left: 5px;background-color:#C81B1B;color: rgb(255, 255, 255);" type="button" class="btn btn-default" aria-label="Left Align">
+  		<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+		</button>
+	</div>
+	<div style="margin-top:-20px;border:1px solid #E7DEDE ;line-height: 40px; height: 40px; background-color: #F5F0F0;width:85%;float: left;"><span style="margin-left: 10px;">首页</span></div>
+	
+<div style="margin-top: 40px;width: 15%;" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default" style="margin-top: -2px;">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a style="text-decoration: none;" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          系统管理
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+      	ssss
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default" style="margin-top: -2px;">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a style="text-decoration: none;" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          商品管理
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+      	wwww
+      </div>
+      <div class="panel-body">
+      	mmm
+      </div>
+      <div class="panel-body">
+      	ccc
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default" style="margin-top: -2px;">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a style="text-decoration: none;" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          会员管理
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+      	ssssssss
+      </div>
+    </div>
+  </div>
+</div>
+ <div style="margin-top: 100px;margin-left: 225px;position: absolute;left: 10px;top: 20px;">
+    <iframe id="myFrame" frameborder="0" width="1100px" height="500px" src="commodity.html" scrolling="no"></iframe>
+ </div>
+
+<div id="modelDel" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+				<div class="modal-dialog" style="width:500px;" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="text-align: center;">
+        			<h4 class="modal-title" >你确定要删除吗！</h4>
+      			</div>
+      			<div class="modal-footer">
+        			<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        			<button type="button" onclick="delComm()" class="btn btn-primary" data-dismiss="modal">确定</button>
+      			</div>
+					</div>
+				</div>
+			</div>
+
+<div id="modelAdd" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="text-align: center;">
+        			<h4 class="modal-title" >添加商品</h4>
+      			</div>
+      			<div class="modal-body">
+      				
+      				
+      					<div style="margin-left: 30px;" class="divdisplay">
+						<span>商品类别：</span>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{t_name}}<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li v-for="(value,key) in types">
+									<a v-bind:id="value.tid" href="#" v-on:click="add_types($event)">{{value.tname}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<span style="margin-left: 30px;">商品名称：</span><input type="text" id="c1" style="height: 33px;margin-top: 6px;" /><br />
+					
+					<span style="margin-left: 30px;">产品编码：</span><input type="text" id="c2" style="height: 33px;margin-top: 6px;" /><br />
+					
+					<div style="margin-left: 30px;margin-top: 6px;" class="divdisplay">
+						<span>商品状态：</span>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{cs_name}}<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li v-for="(value,key) in cstauts">
+									<a v-bind:id="value.csid" href="#" v-on:click="add_Cstauts($event)">{{value.csname}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<span style="margin-left: 30px;">商品图片：</span>
+					<iframe id="fileIframe" name="fileIframe" style="display: none;"></iframe>
+					<form target="fileIframe" style="display: none;" id="formcom" action="returnImgPath.action" method="post" enctype="multipart/form-data">
+					<input id="filepath" type="file" name="file">
+					</form>
+					<input v-bind:value="commoditys.cimg" type="text" style="height: 33px;margin-top: 6px;width: 200px;" />
+					<button type="button" v-on:click="get_Image_Path()" class="btn btn-primary">选择图片</button><br />
+      		
+      		<span style="margin-left: 30px;">图片预览：</span><div style="height: 80px;width: 100px;display: inline;"><img style="margin-top: 6px;height: 100px;width: 120px;" id="image" v-bind:src="commoditys.cimg" /></div><br />		
+      		
+      		<div style="margin-left: 30px;margin-top: 6px;" class="divdisplay">
+      			<span>基础单位：</span>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{u_name}}<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li v-for="(value,key) in units">
+									<a v-bind:id="value.uid" href="#" v-on:click="add_Units($event)">{{value.uname}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<span style="margin-left: 30px;">基础条码：</span><input id="c3" style="margin-top: 6px;" type="text" /><br />
+					
+					<span style="margin-left: 30px;">商品简介：</span><textarea id="c4" style="margin-top: 6px;width: 200px;height: 60px;" id=""></textarea><br />
+					
+					<span style="margin-left: 30px;">商品详情：</span><textarea id="c5" style="margin-top: 6px;width: 200px;height: 60px;" id=""></textarea><br />
+      			</div>
+      			
+      			<div class="modal-footer">
+        			<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        			<button type="button" v-on:click="add_Commodity()" class="btn btn-primary" data-dismiss="modal">确定</button>
+      			</div>
+					</div>
+				</div>
+			</div>
+
+<div id="modelUpd" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="text-align: center;">
+        			<h4 class="modal-title" >修改商品</h4>
+      			</div>
+      			<div class="modal-body">
+      				
+      				
+      					<div style="margin-left: 30px;" class="divdisplay">
+						<span>商品类别：</span>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{t_upname}}<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li v-for="(value,key) in types">
+									<a v-bind:id="value.tid" href="#" v-on:click="add_types($event)">{{value.tname}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<span style="margin-left: 30px;">商品名称：</span><input type="text" v-model="updcommodity.cname" style="height: 33px;margin-top: 6px;" /><br />
+					
+					<span style="margin-left: 30px;">产品编码：</span><input type="text" v-model="updcommodity.coding" style="height: 33px;margin-top: 6px;" /><br />
+					
+					<div style="margin-left: 30px;margin-top: 6px;" class="divdisplay">
+						<span>商品状态：</span>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{cs_upname}}<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li v-for="(value,key) in cstauts">
+									<a v-bind:id="value.csid" href="#" v-on:click="add_Cstauts($event)">{{value.csname}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<span style="margin-left: 30px;">商品图片：</span>
+					<!--<iframe id="fileIframe" name="fileIframe" style="display: none;"></iframe>-->
+					<form target="fileIframe" style="display: none;" id="formcom" action="returnImgPath.action" method="post" enctype="multipart/form-data">
+					<input id="filepath" type="file" name="file">
+					</form>
+					<input v-model="upimage" type="text" style="height: 33px;margin-top: 6px;width: 200px;" />
+					<button type="button" v-on:click="get_UpdImage_Path()" class="btn btn-primary">选择图片</button><br />
+      		
+      		<span style="margin-left: 30px;">图片预览：</span><div style="height: 80px;width: 100px;display: inline;"><img style="margin-top: 6px;height: 100px;width: 120px;" id="image" v-bind:src="upimage"/></div><br />		
+      		
+      		<div style="margin-left: 30px;margin-top: 6px;" class="divdisplay">
+      			<span>基础单位：</span>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{u_upname}}<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li v-for="(value,key) in units">
+									<a v-bind:id="value.uid" href="#" v-on:click="add_Units($event)">{{value.uname}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<span style="margin-left: 30px;">基础条码：</span><input v-model="updcommodity.barcode" id="c3" style="margin-top: 6px;" type="text" /><br />
+					
+					<span style="margin-left: 30px;">商品简介：</span><textarea v-model="updcommodity.csynopsis" id="c4" style="margin-top: 6px;width: 200px;height: 60px;" ></textarea><br />
+					
+					<span style="margin-left: 30px;">商品详情：</span><textarea v-model="updcommodity.cdetails" id="c5" style="margin-top: 6px;width: 200px;height: 60px;"></textarea><br />
+      			</div>
+      			<div class="modal-footer">
+        			<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        			<button type="button" v-on:click="upd_commondity()" class="btn btn-primary" data-dismiss="modal">确定</button>
+      			</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		<script type="text/javascript" src="plugs/jquery/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="plugs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="plugs/vue/vue.js"></script>
+
+   
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+  </body>
+  <script>
+  	
+   	function delShow(){
+   			$('#modelDel').modal('show');
+   	}
+   	function delComm(){
+   		var cid=document.getElementById("myFrame").contentWindow.mm.cid;
+   		//console.log(cid);
+   		document.getElementById("myFrame").contentWindow.mm.del_Commodity(cid);
+   	}
+   	
+   	
+   	function addShow(){
+   			$('#modelAdd').modal('show');
+   	}
+   	
+   	
+   	function updShow(){
+   			$('#modelUpd').modal('show');
+   			ind.get_upd_commondity();
+   	}
+   	
+   	var time_index=0;
+   	
+   		var ind = new Vue({
+   		el:"#allvue",
+   		data:{
+   			types:'',
+   			t_name:'请选择',
+   			t_upname:'',
+   			cstauts:'',
+   			cs_name:'请选择',
+   			cs_upname:'',
+   			units:'',
+   			upimage:'',
+   			u_name:'请选择',
+   			u_upname:'',
+   			updcommodity:'',
+   			commoditys:{cname:'',tid:'',coding:'',csid:'',cimg:'',uid:'',barcode:'',csynopsis:'',cdetails:''},
+   			updtatecommodity:{cid:'',cname:'',tid:'',coding:'',csid:'',cimg:'',uid:'',barcode:'',csynopsis:'',cdetails:''},
+   			},
+   		methods:{
+   			query_NoAll_types:function(){
+   				$.ajax({
+   					url:"queryNoAll.action",
+   					datatype:"json",
+   					success:function(data){
+   						//console.log(data);
+   						ind.types=data;
+   					}
+   				})
+   			},
+   			add_types:function(event){
+   				ind.commoditys.tid=event.currentTarget.id;
+   				ind.t_name=event.currentTarget.innerHTML;
+   				ind.updtatecommodity.tid=event.currentTarget.id;
+   				ind.t_upname=event.currentTarget.innerHTML;
+   				//alert(ind.updtatecommodity.tid);
+   			},
+   			query_NoAll_Cstauts:function(){
+   				$.ajax({
+   					url:"queryNoAllCstauts.action",
+   					datatype:"json",
+   					success:function(data){
+   						//console.log(data);
+   						ind.cstauts=data;
+   					}
+   				})
+   			},
+   			add_Cstauts:function(event){
+   				ind.commoditys.csid=event.currentTarget.id
+   				ind.cs_name=event.currentTarget.innerHTML;
+   				ind.updtatecommodity.csid=event.currentTarget.id
+   				ind.cs_upname=event.currentTarget.innerHTML;
+   			},
+   			query_All_Unit:function(){
+   				$.ajax({
+   					url:"queryAllUnit.action",
+   					datatype:"json",
+   					success:function(data){
+   						 //console.log(data);
+   						ind.units=data;
+   						//console.log(1);
+   						//console.log(this.units);
+   					}
+   				})
+   			},
+   			add_Units:function(event){
+   				ind.commoditys.uid=event.currentTarget.id
+   				ind.u_name=event.currentTarget.innerHTML;
+   				ind.updtatecommodity.uid=event.currentTarget.id
+   				ind.u_upname=event.currentTarget.innerHTML;
+   			},
+   			add_Commodity:function(){
+   				ind.commoditys.cname=$("#c1").val();
+   				//console.log(ind.commoditys.cname);
+   				ind.commoditys.coding=$("#c2").val();
+   				ind.commoditys.barcode=$("#c3").val();
+   				ind.commoditys.csynopsis=$("#c4").val();
+   				ind.commoditys.cdetails=$("#c5").val();
+   				$.ajax({
+   					type:"post",
+   					url:"addCommodity.action",
+   					datatype:"json",
+   					data:ind.commoditys,
+   					async:true,
+   					success:function(data){
+   						location.reload();
+   					}
+   				});
+   			},
+   			get_Image_Path:function(){
+   				$("#filepath").click();
+   				$("#filepath").on("change",function(){
+   					ind.commoditys.cimg=$("#filepath").val();
+   					$("#formcom").submit();
+   					       time_index=0;
+      var timeSet=setInterval(function(){
+        time_index++;
+        var iframeObj = $(window.frames["fileIframe"].document); 
+        var val=iframeObj.find("body").html();
+        if(val!=""&&time_index<5){
+       $("#image").attr("src",val);
+       ind.commoditys.cimg=val;
+       console.log(val);
+       clearInterval(timeSet);
+        }else{
+          clearInterval(timeSet);
+        }
+      },1000);
+ 
+   				});
+   				
+   		},
+   		get_UpdImage_Path:function(){
+   				$("#filepath").click();
+   				$("#filepath").on("change",function(){
+   					ind.commoditys.cimg=$("#filepath").val();
+   					$("#formcom").submit();
+   					       time_index=0;
+      var timeSet=setInterval(function(){
+        time_index++;
+        var iframeObj = $(window.frames["fileIframe"].document); 
+        var val=iframeObj.find("body").html();
+        if(val!=""&&time_index<5){
+       $("#image").attr("src",val);
+       ind.upimage=val;
+       console.log(val);
+       clearInterval(timeSet);
+        }else{
+          clearInterval(timeSet);
+        }
+      },1000);
+ 
+   				});
+   				
+   		},
+   		get_upd_commondity:function(){
+   			ind.updcommodity=document.getElementById("myFrame").contentWindow.mm.updcommodity
+   			ind.u_upname=ind.updcommodity.unit.uname
+   			ind.t_upname=ind.updcommodity.type.tname
+   			ind.cs_upname=ind.updcommodity.cstatus.csname
+   			ind.upimage=ind.updcommodity.cimg
+   			//console.log(ind.updcommodity.unit.uname)
+   			console.log(ind.updcommodity);
+   			
+   		},
+   		upd_commondity:function(){
+   			ind.updtatecommodity.cid=ind.updcommodity.cid
+   			ind.updtatecommodity.cname=ind.updcommodity.cname
+   			ind.updtatecommodity.barcode=ind.updcommodity.barcode
+				ind.updtatecommodity.coding=ind.updcommodity.coding
+				ind.updtatecommodity.csynopsis=ind.updcommodity.csynopsis
+				ind.updtatecommodity.cdetails=ind.updcommodity.cdetails
+				ind.updtatecommodity.cimg=ind.upimage
+   			$.ajax({
+   				url:"updCommodity.action?data="+ind.updtatecommodity,
+   				method:"get",
+   				datatype:'json',
+   				async:true,
+   				success:function(data){
+   					location.reload();
+   				}
+   			})
+   			
+   		}
+   			
+   		}
+   	})
+   		
+   		ind.query_All_Unit();
+   		ind.query_NoAll_Cstauts();
+     	ind.query_NoAll_types();
+   </script>
 </html>
