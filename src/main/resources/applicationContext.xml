@@ -35,6 +35,7 @@
     <!--扫描mapper包并且自动创建成 MapperFactoryBean-->
     <bean id="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.zking.mapper"></property>
+
     </bean>
 
     <!--active-->
