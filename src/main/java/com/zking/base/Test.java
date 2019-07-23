@@ -1,11 +1,9 @@
 package com.zking.base;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-public class BaseEntity {
-
+public class Test {
 
     public static void main(String[] args) {
         List list = new ArrayList();
@@ -17,6 +15,7 @@ public class BaseEntity {
         list.add("knm");
         list.add("lpl");
         System.out.println(11);
-       list.stream().forEach(s-> System.out.println(s));
+       // list.stream().forEach(s-> System.out.println(s));
     }
+
 }

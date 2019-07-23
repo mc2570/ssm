@@ -20,4 +20,6 @@ public interface BaseDao<T> {
 
     @SelectProvider(type = BuildSQLUtils.class, method = "BuildSQLForQueryList")
     List<T> queryList(BaseEntity entity, Integer begin, Integer end);
+
+
 }

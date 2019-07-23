@@ -379,14 +379,24 @@
    			query_All_Unit:function(){
    				$.ajax({
    					url:"queryAllUnit.action",
-   					datatype:"json",
+   					dataType:"json",
+   					async: true,
    					success:function(data){
    						 //console.log(data);
    						ind.units=data;
    						//console.log(1);
    						//console.log(this.units);
-   					}
+   						
+   					},
+   					error:function(data){
+							if(data.responseText=="loseSession"){
+								console.log(data.responseText)
+								location.href="login.html"
+							}
+
+						}
    				})
+   				
    			},
    			add_Units:function(event){
    				ind.commoditys.uid=event.currentTarget.id
@@ -486,13 +496,31 @@
    				}
    			})
    			
+   		},
+   		getUser:function(){
+   			$.ajax({
+   					url:"getUser.action",
+   					dataType:"json",
+   					async: true,
+   					success:function(data){
+   						console.log(data);
+   					},
+   				error:function(data){
+						if(data.responseText=="loseSession"){
+							console.log(data.responseText)
+							location.href="login.html"
+						}
+					}
+   			});
    		}
    			
    		}
    	})
    		
+   		ind.getUser();
    		ind.query_All_Unit();
    		ind.query_NoAll_Cstauts();
      	ind.query_NoAll_types();
+     	
    </script>
 </html>

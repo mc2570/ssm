@@ -5,6 +5,8 @@ package com.zking.utils;
 import com.zking.base.BaseEntity;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BuildSQLUtils {
 
@@ -126,4 +128,6 @@ public class BuildSQLUtils {
         }
         return entityName;
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.zking.controller;
 
 import com.zking.mapper.CommodityMapper;
 import com.zking.model.Commodity;
+import com.zking.model.User;
 import org.activiti.engine.impl.util.json.JSONArray;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +36,15 @@ public class CommodityController {
         String pageType=request.getParameter("pageType");
         String pageCstatus=request.getParameter("pageCstatus");
 
+        User user = (User) request.getSession().getAttribute("user");
+
         int pageNumber = (Integer.parseInt(pageIndex)-1)*Integer.parseInt(pageSize);
         List<Commodity> list = commodityMapper.queryAllCommoditys(pageNumber,Integer.parseInt(pageSize),pageQuery,pageType,pageCstatus);
         int counts = commodityMapper.queryAllCounts(pageQuery,pageType,pageCstatus);
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("total",counts);
         map.put("rows",list);
+        map.put("user",user);
         return map;
     }
 
@@ -100,6 +104,14 @@ public class CommodityController {
         //Commodity commodity= JSON
         //commodityMapper.updateCommodity(commoditys);
     }
+
+    @RequestMapping("getUserMsg")
+    public String getUser(HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        System.out.println(user.toString());
+        return "";
+    }
+
 
 
 }
