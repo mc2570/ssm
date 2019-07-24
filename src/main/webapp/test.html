@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>test</title>
+		    <link rel="stylesheet" href="plugs/bootstrap/css/bootstrap.css" rel="stylesheet">
+	</head>
+	<body>
+		<div id="temp">
+			<h1>1ll1l1l1l1l1l</h1>
+		</div>
+		
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="plugs/jquery/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="plugs/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="plugs/vue/vue.js"></script>
+    
+    <script>
+    	var test=new Vue({
+    		el:"#temp",
+    		data:{},
+    		methods:{
+    			calculate_revenue:function(){
+    				var text = $("#context").val()
+    			}
+    		}
+    	})
+    	
+    </script>
+	</body>
+</html>

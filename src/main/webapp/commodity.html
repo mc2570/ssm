@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>Bootstrap 101 Template</title>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="plugs/bootstrap/css/bootstrap.min.css">
+
+		<style>
+			.divdisplay {
+				display: inline;
+			}
+		</style>
+	</head>
+
+	<body style="width: 99%; margin-left: auto;margin-right: auto;">
+		<div id="app_commodity">
+			<div style="margin-top:10px; width: auto;">
+				<div class="divdisplay">
+					<div class="divdisplay">
+						<input id="query_name" style="height: 33px;" type="text" placeholder="商品名称">
+					</div>
+					<div style="margin-left: 30px;" class="divdisplay">
+						<span>商品状态：</span>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{cs_name}} <span class="caret"></span>
+  </button>
+							<ul class="dropdown-menu">
+								<li v-for="(value,key) in cstatus">
+									<a v-bind:id="key" href="#" v-on:click="add_Castatus(value)">{{value.csname}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div style="margin-left: 30px;" class="divdisplay">
+						<span>商品类别：</span>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{t_name}}<span class="caret"></span>
+  </button>
+							<ul class="dropdown-menu">
+								<li v-for="(value,key) in types">
+									<a v-bind:id="key" href="#" v-on:click="add_types($event)">{{value.tname}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<button class="btn btn-primary" v-on:click="query_like_commodity()" type="submit">查询</button>
+				</div>
+				<div style="display: inline;float: right;">
+					<button class="btn btn-warning" v-on:click="add_Commodity()" type="submit">新增</button>
+				</div>
+			</div>
+			<div style="margin-top: 10px;">
+				<table class="table table-bordered">
+					<tr class="text-center active">
+						<td>
+							<h5>编号</h5></td>
+						<td>
+							<h5>商品状态</h5></td>
+						<td>
+							<h5>商品名称</h5></td>
+						<td>
+							<h5>商品分类</h5></td>
+						<td>
+							<h5>图片</h5></td>
+						<td>
+							<h5>基础单位</h5></td>
+						<td>
+							<h5>操作</h5></td>
+					</tr>
+					<tr class="text-center" v-for="(value,key) in rows">
+						<td>{{value.cid}}</td>
+						<td>{{value.cstatus.csname}}</td>
+						<td>{{value.cname}}</td>
+						<td>{{value.type.tname}}</td>
+						<td><img style="width: 50px;height: 30;" v-bind:src="value.cimg" /></td>
+						<td>{{value.unit.uname}}</td>
+						<td><button class="btn btn-danger" v-bind:id="value.cid" v-on:click="del_ok_Commodity($event)" type="submit">删除</button>
+							<button class="btn btn-info" v-bind:id="value.cid" v-on:click="query_upd_Commodity($event)" type="submit">编辑</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<nav aria-label="..." class="pull-right">
+				<ul class="pager">
+					<li>
+						<a href="#" v-on:click="pagination_list('w')">上一页</a>
+					</li>
+					<span v-for="rows_page in total">
+      					<li class="active">
+      						<a href="#" v-on:click="pagination_list(rows_page)">{{rows_page}} 
+      							<span class="sr-only"></span>
+					</a>
+					</li>
+					</span>
+					<li>
+						<a href="#" v-on:click="pagination_list('s')">下一页</a>
+					</li>
+				</ul>
+			</nav>
+
+			
+		</div>
+		<!--<button v-on:click="query_commodity">加载</button>-->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script type="text/javascript" src="plugs/jquery/jquery.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script type="text/javascript" src="plugs/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="plugs/vue/vue.js"></script>
+
+	</body>
+	<script>
+		var mm = new Vue({
+			el: "#app_commodity",
+			data: {
+				total: '',
+				rows: '',
+				cstatus: '',
+				cs_name: '请选择',
+				types: '',
+				t_name: '请选择',
+				cid: '',
+				updcommodity:'',
+				param: {
+					pageSize: 2,
+					pageIndex: 1,
+					pageQuery: '',
+					pageType: '',
+					pageCstatus: ''
+				}
+			},
+			methods: {
+				query_commodity_list: function() {
+					//var _this = this;
+					//console.log(_this);
+					$.ajax({
+						type: "get",
+						url: "queryCommodity.action",
+						async: true,
+						dataType: "json",
+						data: mm.param,
+						success: function(data) {
+							mm.total = parseInt(data.total / mm.param.pageSize) + parseInt((data.total % mm.param.pageSize) != 0 ? 1 : 0);
+							mm.rows = data.rows;
+							//console.log(data)
+							//console.log(data.users)
+						},
+						error:function(data){
+							console.log(data.responseText+"__commodity")
+							if(data.responseText=="loseSession"){
+								location.href="login.html"
+							}
+							
+						}
+
+					});
+				},
+				query_like_commodity: function() {
+					var mp = $("#query_name").val();
+					mm.param.pageQuery = mp
+					mm.param.pageCstatus = mm.cs_name;
+					mm.param.pageType = mm.t_name;
+					$.ajax({
+						type: "get",
+						url: "queryCommodity.action",
+						async: true,
+						datatype: "json",
+						data: mm.param,
+						success: function(data) {
+							mm.total = parseInt(data.total / mm.param.pageSize) + parseInt((data.total % mm.param.pageSize) != 0 ? 1 : 0);
+							//console.log(data);
+							mm.rows = data.rows;
+						}
+					});
+				},
+				pagination_list: function(page) {
+					if(page == "w") {
+						if(mm.param.pageIndex > 1) {
+							mm.param.pageIndex--;
+						}
+					} else if(page == "s") {
+						if(mm.param.pageIndex == mm.total) {
+
+						} else {
+							mm.param.pageIndex++;
+						}
+					} else {
+						mm.param.pageIndex = page;
+					}
+					mm.query_commodity_list();
+				},
+				query_Castatus_list: function() {
+					$.ajax({
+						type: "get",
+						url: "queryAllCstatus.action",
+						async: true,
+						datatype: "json",
+						data: mm.cstatus,
+						success: function(data) {
+							mm.cstatus = data;
+						}
+					});
+				},
+				add_Castatus: function(va) {
+					mm.cs_name = va.csname;
+				},
+				query_Type_list: function() {
+					$.ajax({
+						type: "get",
+						url: "queryType.action",
+						async: true,
+						datatype: "json",
+						success: function(data) {
+							//alert(data)
+							mm.types = data;
+						}
+					});
+				},
+				add_types: function(event) {
+					mm.t_name = event.currentTarget.innerHTML;
+				},
+				del_Commodity: function(cid) {
+					$.ajax({
+						type: "get",
+						url: "delCommodity.action?cid=" + cid,
+						async: true,
+						success: function(data) {
+							location.reload();
+						}
+					});
+				},
+				del_ok_Commodity:function(event){
+					parent.delShow();
+					mm.cid=event.currentTarget.id;
+					//console.log(event.currentTarget+"     ________")
+				},
+				add_Commodity:function(){
+					parent.addShow();
+				},
+				query_upd_Commodity:function(event){
+					var updcid=event.currentTarget.id
+   					//console.log(updcid);
+   					$.ajax({
+   						type:"get",
+   						url:"queryUpdCommodity.action?cid="+updcid,
+   						datatype:"json",
+   						async:true,
+   						success:function(data){
+   							mm.updcommodity=data
+   							//console.log(data)
+   							parent.updShow();
+   							//console.log(mm.updcommodity)
+   						}
+   					});
+				},
+   				
+			}
+		})
+		mm.query_Type_list();
+		mm.query_Castatus_list();
+		mm.query_commodity_list();
+	</script>
+
+</html>
