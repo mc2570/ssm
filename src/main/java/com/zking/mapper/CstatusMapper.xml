@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.CstatusMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.Cstatus" >
+    <constructor >
+      <idArg column="csid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="csname" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    csid, csname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cstatus
+    where csid = #{csid,jdbcType=INTEGER}
+  </select>
+
+  <select id="queryAllCstatus" resultType="com.zking.model.Cstatus">
+    select csname,csid from Cstatus
+  </select>
+
+  <select id="queryNoAll" resultType="com.zking.model.Cstatus">
+    select csname,csid from Cstatus where csname!='全部'
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cstatus
+    where csid = #{csid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.Cstatus" >
+    insert into cstatus (csid, csname)
+    values (#{csid,jdbcType=INTEGER}, #{csname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.Cstatus" >
+    insert into cstatus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="csid != null" >
+        csid,
+      </if>
+      <if test="csname != null" >
+        csname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="csid != null" >
+        #{csid,jdbcType=INTEGER},
+      </if>
+      <if test="csname != null" >
+        #{csname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.Cstatus" >
+    update cstatus
+    <set >
+      <if test="csname != null" >
+        csname = #{csname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where csid = #{csid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.Cstatus" >
+    update cstatus
+    set csname = #{csname,jdbcType=VARCHAR}
+    where csid = #{csid,jdbcType=INTEGER}
+  </update>
+</mapper>

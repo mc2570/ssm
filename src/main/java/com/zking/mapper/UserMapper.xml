@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.User" >
+    <constructor >
+      <idArg column="userid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userage" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userpassword" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="usersex" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userid, username, userage, userpassword, usersex
+  </sql>
+
+  <resultMap id="queryAllUsers" type="com.zking.model.User">
+    <id property="userid" column="userid"></id>
+    <result property="username" column="username"></result>
+    <result property="userage" column="userage"></result>
+    <result property="userpassword" column="userpassword"></result>
+    <result property="usersex" column="usersex"></result>
+  </resultMap>
+  
+  <select id="queryUserByNameAndPass" parameterType="java.lang.String" resultType="com.zking.model.User" >
+    SELECT
+        <include refid="Base_Column_List"></include>
+    FROM
+        USER
+    <where>
+      <if test="username !=null and username !=''">
+          username = #{username}
+      </if>
+      <if test="userpassword !=null and userpassword !=''">
+          and userpassword = #{userpassword}
+      </if>
+    </where>
+  </select>
+
+  <select id="queryAllUser" resultMap="queryAllUsers" >
+    SELECT
+        <include refid="Base_Column_List"></include>
+    FROM
+        USER
+  </select>
+
+  
+
+
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.User" >
+    insert into user (userid, username, userage, 
+      userpassword, usersex)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userage,jdbcType=INTEGER}, 
+      #{userpassword,jdbcType=VARCHAR}, #{usersex,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="userage != null" >
+        userage,
+      </if>
+      <if test="userpassword != null" >
+        userpassword,
+      </if>
+      <if test="usersex != null" >
+        usersex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userage != null" >
+        #{userage,jdbcType=INTEGER},
+      </if>
+      <if test="userpassword != null" >
+        #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null" >
+        #{usersex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userage != null" >
+        userage = #{userage,jdbcType=INTEGER},
+      </if>
+      <if test="userpassword != null" >
+        userpassword = #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null" >
+        usersex = #{usersex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.User" >
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      userage = #{userage,jdbcType=INTEGER},
+      userpassword = #{userpassword,jdbcType=VARCHAR},
+      usersex = #{usersex,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.SpecificationsMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.Specifications" >
+    <constructor >
+      <idArg column="spid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="spoding" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="barcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="uid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="specifcation" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="price" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="sale" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="customer" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ssid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="qrcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    spid, spoding, barcode, number, uid, specifcation, price, sale, customer, ssid, qrcode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from specifications
+    where spid = #{spid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from specifications
+    where spid = #{spid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.Specifications" >
+    insert into specifications (spid, spoding, barcode, 
+      number, uid, specifcation, 
+      price, sale, customer, 
+      ssid, qrcode)
+    values (#{spid,jdbcType=INTEGER}, #{spoding,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, 
+      #{number,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{specifcation,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DOUBLE}, #{sale,jdbcType=DOUBLE}, #{customer,jdbcType=VARCHAR}, 
+      #{ssid,jdbcType=INTEGER}, #{qrcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.Specifications" >
+    insert into specifications
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spid != null" >
+        spid,
+      </if>
+      <if test="spoding != null" >
+        spoding,
+      </if>
+      <if test="barcode != null" >
+        barcode,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="specifcation != null" >
+        specifcation,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="sale != null" >
+        sale,
+      </if>
+      <if test="customer != null" >
+        customer,
+      </if>
+      <if test="ssid != null" >
+        ssid,
+      </if>
+      <if test="qrcode != null" >
+        qrcode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spid != null" >
+        #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="spoding != null" >
+        #{spoding,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="specifcation != null" >
+        #{specifcation,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="sale != null" >
+        #{sale,jdbcType=DOUBLE},
+      </if>
+      <if test="customer != null" >
+        #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="ssid != null" >
+        #{ssid,jdbcType=INTEGER},
+      </if>
+      <if test="qrcode != null" >
+        #{qrcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.Specifications" >
+    update specifications
+    <set >
+      <if test="spoding != null" >
+        spoding = #{spoding,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="specifcation != null" >
+        specifcation = #{specifcation,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="sale != null" >
+        sale = #{sale,jdbcType=DOUBLE},
+      </if>
+      <if test="customer != null" >
+        customer = #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="ssid != null" >
+        ssid = #{ssid,jdbcType=INTEGER},
+      </if>
+      <if test="qrcode != null" >
+        qrcode = #{qrcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where spid = #{spid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.Specifications" >
+    update specifications
+    set spoding = #{spoding,jdbcType=VARCHAR},
+      barcode = #{barcode,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      specifcation = #{specifcation,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      sale = #{sale,jdbcType=DOUBLE},
+      customer = #{customer,jdbcType=VARCHAR},
+      ssid = #{ssid,jdbcType=INTEGER},
+      qrcode = #{qrcode,jdbcType=VARCHAR}
+    where spid = #{spid,jdbcType=INTEGER}
+  </update>
+</mapper>

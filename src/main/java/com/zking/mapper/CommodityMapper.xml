@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.CommodityMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.Commodity" >
+    <constructor >
+      <idArg column="cid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="tid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="coding" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cimg" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="uid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="barcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="csynopsis" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cdetails" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cid, tid, cname, coding, sid, cimg, uid, barcode, csynopsis, cdetails
+  </sql>
+
+    <resultMap id="QueryOneCommodity" type="com.zking.model.Commodity">
+        <id property="cid" column="cid"></id>
+        <result property="cname" column="cname"></result>
+        <result property="cimg" column="cimg"></result>
+        <result property="barcode" column="barcode"></result>
+        <result property="csynopsis" column="csynopsis"></result>
+        <result property="cdetails" column="cdetails"></result>
+        <result property="coding" column="coding"></result>
+        <association property="type" javaType="com.zking.model.Type" >
+            <id property="tid" column="tid"></id>
+            <result property="tname" column="tname"></result>
+        </association>
+        <association property="cstatus" javaType="com.zking.model.Cstatus" >
+            <id property="csid" column="csid"></id>
+            <result property="csname" column="csname"></result>
+        </association>
+        <association property="unit" javaType="com.zking.model.Unit" >
+            <id property="uid" column="uid"></id>
+            <result property="uname" column="uname"></result>
+        </association>
+    </resultMap>
+
+  <resultMap id="QueryAllCommodity" type="com.zking.model.Commodity">
+    <id property="cid" column="cid"></id>
+    <result property="cname" column="cname"></result>
+    <result property="cimg" column="cimg"></result>
+    <association property="type" javaType="com.zking.model.Type" >
+      <id property="tid" column="tid"></id>
+      <result property="tname" column="tname"></result>
+    </association>
+    <association property="cstatus" javaType="com.zking.model.Cstatus" >
+      <id property="csid" column="csid"></id>
+      <result property="csname" column="csname"></result>
+    </association>
+    <association property="unit" javaType="com.zking.model.Unit" >
+      <id property="uid" column="uid"></id>
+      <result property="uname" column="uname"></result>
+    </association>
+  </resultMap>
+
+  <select id="queryOneCommodity" resultMap="QueryOneCommodity">
+    select c.cid,c.cimg,c.cname,c.barcode,c.cdetails,c.csynopsis,c.coding,cs.csname,t.tname,u.uname from commodity c LEFT JOIN cstatus cs on c.sid=cs.csid LEFT JOIN type t on c.tid=t.tid LEFT JOIN unit u on c.uid=u.uid WHERE c.cid=#{cid}
+  </select>
+  
+  <select id="queryAllCommoditys" resultMap="QueryAllCommodity">
+      select c.cid,c.cimg,c.cname,cs.csname,t.tname,u.uname from commodity c LEFT JOIN cstatus cs on c.sid=cs.csid LEFT JOIN type t on c.tid=t.tid LEFT JOIN unit u on c.uid=u.uid
+    <where>
+      <if test="pageQuery!=null and pageQuery!=''" >
+        and c.cname like "%"#{pageQuery}"%"
+      </if>
+      <if test="pageType!=null and pageType!='' and pageType!='请选择' and pageType!='全部' ">
+        and t.tname=#{pageType}
+      </if>
+      <if test="pageCstatus!=null and pageCstatus!='' and pageCstatus!='请选择' and pageCstatus!='全部'">
+        and cs.csname=#{pageCstatus}
+      </if>
+    </where> LIMIT ${pageIndex},${pageSize}
+  </select>
+
+  <select id="queryAllCounts" resultType="java.lang.Integer">
+     select COUNT(*) from commodity c LEFT JOIN cstatus cs on c.sid=cs.csid LEFT JOIN type t on c.tid=t.tid LEFT JOIN unit u on c.uid=u.uid
+    <where>
+        <if test="pageQuery!=null and pageQuery!=''" >
+            and c.cname like "%"#{pageQuery}"%"
+        </if>
+        <if test="pageType!=null and pageType!='' and pageType!='请选择' and pageType!='全部'">
+            and t.tname=#{pageType}
+        </if>
+        <if test="pageCstatus!=null and pageCstatus!='' and pageCstatus!='请选择' and pageCstatus!='全部'">
+            and cs.csname=#{pageCstatus}
+        </if>
+    </where>
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from commodity
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from commodity
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.Commodity" >
+    insert into commodity (cid, tid, cname, 
+      coding, sid, cimg, 
+      uid, barcode, csynopsis, 
+      cdetails)
+    values (#{cid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, 
+      #{coding,jdbcType=VARCHAR}, #{sid,jdbcType=INTEGER}, #{cimg,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=INTEGER}, #{barcode,jdbcType=VARCHAR}, #{csynopsis,jdbcType=VARCHAR}, 
+      #{cdetails,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.Commodity" >
+    insert into commodity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="coding != null" >
+        coding,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="cimg != null" >
+        cimg,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="barcode != null" >
+        barcode,
+      </if>
+      <if test="csynopsis != null" >
+        csynopsis,
+      </if>
+      <if test="cdetails != null" >
+        cdetails,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="coding != null" >
+        #{coding,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="cimg != null" >
+        #{cimg,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="csynopsis != null" >
+        #{csynopsis,jdbcType=VARCHAR},
+      </if>
+      <if test="cdetails != null" >
+        #{cdetails,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.Commodity" >
+    update commodity
+    <set >
+      <if test="tid != null" >
+        tid = #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="coding != null" >
+        coding = #{coding,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="cimg != null" >
+        cimg = #{cimg,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="csynopsis != null" >
+        csynopsis = #{csynopsis,jdbcType=VARCHAR},
+      </if>
+      <if test="cdetails != null" >
+        cdetails = #{cdetails,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.Commodity" >
+    update commodity
+    set tid = #{tid,jdbcType=INTEGER},
+      cname = #{cname,jdbcType=VARCHAR},
+      coding = #{coding,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=INTEGER},
+      cimg = #{cimg,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      barcode = #{barcode,jdbcType=VARCHAR},
+      csynopsis = #{csynopsis,jdbcType=VARCHAR},
+      cdetails = #{cdetails,jdbcType=VARCHAR}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateCommodity">
+    update commodity set
+       <if test="cname!=null and cname!=#{commodity.cname}">
+         cname=#{commodity.cname}
+       </if>
+       <if test="barcode!=null and barcode!=#{commodity.barcode}">
+         barcode=#{barcode}
+       </if>
+       <if test="cdetails!=null and cdetails!=#{commodity.cdetails}">
+         cdetails=#{commodity.cdetails}
+       </if>
+       <if test="cimg!=null and cimg!=#{commodity.cimg}">
+         cimg=#{commodity.cimg}
+       </if>
+       <if test="coding!=null and coding!=#{commodity.coding}">
+         coding=#{commodity.coding}
+       </if>
+       <if test="csynopsis!=null and csynopsis!=#{commodity.csynopsis}">
+         csynopsis=#{commodity.csynopsis}
+       </if>
+       <if test="sid!=null and sid!=#{commodity.sid}">
+         sid=#{commodity.sid}
+       </if>
+       <if test="uid!=null and uid!=#{commodity.uid}">
+         uid=#{commodity.uid}
+       </if>
+       <if test="tid!=null and tid!=#{commodity.tid}">
+         tid=#{commodity.tid}
+       </if>
+     where cid=#{commodity.cid}
+  </update>
+
+  <select id="getAlls" resultType="com.zking.model.Commodity">
+    Select * from commodity limit ${pageIndex},${pageSize}
+    <!--<where>-->
+    <!--<if test="pid!=null">pid=#{pid} </if>-->
+    <!--<if test="pname!=null and pname!=''">AND pname=#{pname}</if>-->
+    <!--<if test="page!=null and page!=''">AND page=#{page}</if>-->
+    <!--</where>-->
+  </select>
+
+</mapper>
